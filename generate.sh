@@ -12,7 +12,6 @@ generate_docker() {
             tig git-annex-remote-rclone \
   --freesurfer version="6.0.0" \
   license_path="./license.txt" \
-  --add-to-entrypoint "source /etc/fsl/fsl.sh" \
   --user=neuro \
   --miniconda \
     conda_install="python=3.6 jupyter jupyterlab jupyter_contrib_nbextensions
