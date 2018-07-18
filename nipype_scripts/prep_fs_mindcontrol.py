@@ -194,7 +194,7 @@ if __name__ == "__main__":
         # check if mri dir exists, and don't add fsaverage
         if os.path.exists(os.path.join(path, 'mri')) and 'average' not in subject:
             subjects.append(subject)
-
+    print(subjects)
     volumes = ["brainmask.mgz", "wm.mgz", "aparc+aseg.mgz", "T1.mgz", "ribbon.mgz"]
     input_node = Node(IdentityInterface(fields=['subject_id',
                                                 "subjects_dir",

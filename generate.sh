@@ -12,7 +12,6 @@ generate_docker() {
             tig git-annex-remote-rclone \
   --freesurfer version="6.0.0" \
   license_path="./license.txt" \
-  --user=neuro \
   --miniconda \
     conda_install="python=3.6 jupyter jupyterlab jupyter_contrib_nbextensions
                    traits pandas matplotlib scikit-learn seaborn" \
@@ -22,12 +21,12 @@ generate_docker() {
     env_name="neuro" \
     activate=true \
     create_env=true \
-  --run-bash 'source activate neuro && jupyter nbextension enable exercise2/main && jupyter nbextension enable spellchecker/main' \
-  --run 'mkdir -p ~/.jupyter && echo c.NotebookApp.ip = "0.0.0.0" > ~/.jupyter/jupyter_notebook_config.py' \
-  --user=root \
-  --run 'mkdir /data && chmod 777 /data && chmod a+s /data' \
+  --run 'mkdir /mric_data && chmod 777 /mric_data && chmod a+s /mric_data' \
   --run 'mkdir /output && chmod 777 /output && chmod a+s /output' \
-  --user=neuro
+  --run 'mkdir /scripts && chmod 777 /scripts && chmod a+s /scripts' \
+  --copy './license.txt' '/opt/freesurfer-6.0.0/' \
+  --copy './nipype_scripts/*' '/scripts/' \
+  --run 'chmod -R 777 /scripts'
 }
 
 generate_docker > Dockerfile
